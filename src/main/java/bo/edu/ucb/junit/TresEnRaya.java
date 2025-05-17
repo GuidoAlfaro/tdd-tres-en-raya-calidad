@@ -3,7 +3,7 @@ package bo.edu.ucb.junit;
 public class TresEnRaya implements JuegoTresEnRaya {
 
     private final String[][] tablero = new String[3][3];
-    private String jugadorActual = "X";  // 👤 Guido
+    private String jugadorActual = "X";  // Guido
 
     @Override
     public void ponerFicha(int fila, int columna) {
@@ -19,7 +19,7 @@ public class TresEnRaya implements JuegoTresEnRaya {
     @Override
     public String obtenerJugadorActual() {
         // Guido
-        return jugadorActual;
+        return null;
     }
 
     @Override
