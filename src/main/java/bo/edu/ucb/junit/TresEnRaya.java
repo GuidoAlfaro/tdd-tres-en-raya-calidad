@@ -19,7 +19,7 @@ public class TresEnRaya implements JuegoTresEnRaya {
     @Override
     public String obtenerJugadorActual() {
         // Guido
-        return null;
+        return jugadorActual;
     }
 
     @Override
