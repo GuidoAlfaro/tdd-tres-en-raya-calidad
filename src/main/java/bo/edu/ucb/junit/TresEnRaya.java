@@ -12,7 +12,9 @@ public class TresEnRaya implements JuegoTresEnRaya {
         tablero[fila][columna] = jugadorActual;
 
         if (jugadorActual.equals("X")) {
-            jugadorActual = "+"; // siguiente turno
+            jugadorActual = "+";
+        } else if (jugadorActual.equals("+")) {
+            jugadorActual = "X";
         }
     }
 
