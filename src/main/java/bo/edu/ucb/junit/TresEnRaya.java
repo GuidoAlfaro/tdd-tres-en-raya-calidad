@@ -7,14 +7,15 @@ public class TresEnRaya implements JuegoTresEnRaya {
 
     @Override
     public void ponerFicha(int fila, int columna) {
-        // Andrea:
-        // Validar que fila y columna estén entre 0 y 2
-        // Validar que la casilla esté vacía
+        // Colocamos la ficha en el tablero (Andy debes validar luego esto con respecto al requerimiento 1)
+        // Aqui entra el requerimiento 1 y 2
+        tablero[fila][columna] = jugadorActual;
 
-        // Guido:
-        // Colocar ficha según jugadorActual
-        // Cambiar turno: "X" → "O" o "O" → "X"
+        if (jugadorActual.equals("X")) {
+            jugadorActual = "+"; // siguiente turno
+        }
     }
+
 
     @Override
     public String obtenerJugadorActual() {

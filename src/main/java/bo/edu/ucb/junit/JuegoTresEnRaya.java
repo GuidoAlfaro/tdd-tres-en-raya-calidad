@@ -2,7 +2,7 @@ package bo.edu.ucb.junit;
 
 public interface JuegoTresEnRaya {
 
-    // Andrea: validaciones + poner ficha
+    // Andrea: validaciones y poner ficha
     void ponerFicha(int fila, int columna);
 
     // Guido: turno actual

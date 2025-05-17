@@ -6,24 +6,29 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TresEnRayaTest {
 
     @Test
-    void testPrimerJugadorEsX() {
+    void primerJugadorEsX() {
         JuegoTresEnRaya juego = new TresEnRaya();
         assertEquals("X", juego.obtenerJugadorActual());
     }
 
     @Test
-    void elTurnoDebeAlternarEntreXyO() {
+    void siXJuegaLuegoDebeSerMas() {
         JuegoTresEnRaya juego = new TresEnRaya();
 
-        assertEquals("X", juego.obtenerJugadorActual(), "Debe empezar jugando X");
-
-        juego.ponerFicha(0, 0);
-
+        juego.ponerFicha(0, 0); // Juega X
         assertEquals("+", juego.obtenerJugadorActual(), "Después de X, debe jugar +");
-
-        juego.ponerFicha(1, 1);
-
-        assertEquals("+", juego.obtenerJugadorActual(), "Después de +, debe jugar X");
     }
+
+    @Test
+    void siMasJuegaLuegoDebeSerX() {
+        JuegoTresEnRaya juego = new TresEnRaya();
+
+        juego.ponerFicha(0, 0); // Juega X
+        juego.ponerFicha(1, 1); // Juega +
+
+        assertEquals("X", juego.obtenerJugadorActual(), "Después de +, debe jugar X");
+    }
+
+
 
 }
