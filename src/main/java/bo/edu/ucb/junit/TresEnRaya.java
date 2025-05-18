@@ -7,17 +7,25 @@ public class TresEnRaya implements JuegoTresEnRaya {
 
     @Override
     public void ponerFicha(int fila, int columna) {
-        // Colocamos la ficha en el tablero (Andy debes validar luego esto con respecto al requerimiento 1)
-        // Aqui entra el requerimiento 1 y 2
+        // Validar coordenadas (req 1 y 2 from images)
+        if (fila < 0 || fila > 2 || columna < 0 || columna > 2) {
+            throw new IllegalArgumentException("Coordenadas fuera de rango");
+        }
+        // Validar si la posición ya está ocupada
+        if (tablero[fila][columna] != null) {
+            throw new IllegalArgumentException("La posición ya está ocupada");
+        }
+
+        // Colocamos la ficha en el tablero
         tablero[fila][columna] = jugadorActual;
 
+        // Cambiar turno
         if (jugadorActual.equals("X")) {
             jugadorActual = "+";
         } else if (jugadorActual.equals("+")) {
             jugadorActual = "X";
         }
     }
-
 
     @Override
     public String obtenerJugadorActual() {
@@ -27,15 +35,46 @@ public class TresEnRaya implements JuegoTresEnRaya {
 
     @Override
     public String obtenerGanador() {
-        // Husk
-        // Revisar si alguna fila, columna o diagonal tiene 3 iguales (y no null)
+        // Husk: 
+        for (int i = 0; i < 3; i++) {
+            if (tablero[i][0] != null && tablero[i][0].equals(tablero[i][1]) && tablero[i][1].equals(tablero[i][2])) {
+                return tablero[i][0];
+            }
+        }
+
+        for (int j = 0; j < 3; j++) {
+            if (tablero[0][j] != null && tablero[0][j].equals(tablero[1][j]) && tablero[1][j].equals(tablero[2][j])) {
+                return tablero[0][j];
+            }
+        }
+    
+        if (tablero[0][0] != null && tablero[0][0].equals(tablero[1][1]) && tablero[1][1].equals(tablero[2][2])) {
+            return tablero[0][0];
+        }
+
+    
+        if (tablero[0][2] != null && tablero[0][2].equals(tablero[1][1]) && tablero[1][1].equals(tablero[2][0])) {
+            return tablero[0][2];
+        }
+
         return null;
     }
 
     @Override
     public boolean juegoTerminado() {
-        // Husk
-        return obtenerGanador() != null;
+        // Husk: 
+        if (obtenerGanador() != null) {
+            return true;
+        }
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (tablero[i][j] == null) {
+                    return false; 
+                }
+            }
+        }
+        return true; 
     }
 
     @Override
