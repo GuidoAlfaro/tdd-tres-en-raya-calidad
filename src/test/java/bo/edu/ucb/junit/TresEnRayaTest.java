@@ -100,4 +100,22 @@ public class TresEnRayaTest {
 
         assertEquals(expectedMessage, actualMessage);
     }
+
+    // Nuevas pruebas para obtenerGanador y juegoTerminado
+    @Test
+    void noHayGanadorEnTableroVacio() {
+        JuegoTresEnRaya juego = new TresEnRaya();
+        assertNull(juego.obtenerGanador(), "No debe haber ganador en un tablero vacío");
+    }
+
+    @Test
+    void juegoNoTerminadoSinGanador() {
+        JuegoTresEnRaya juego = new TresEnRaya();
+        // X juega en (0,0)
+        juego.ponerFicha(0, 0);
+        // + juega en (1,0)
+        juego.ponerFicha(1, 0);
+
+        assertFalse(juego.juegoTerminado(), "El juego no debe estar terminado cuando no hay ganador y quedan espacios libres");
+    }
 }
