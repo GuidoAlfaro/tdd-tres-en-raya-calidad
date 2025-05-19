@@ -84,4 +84,20 @@ public class TresEnRayaTest {
 
         assertEquals(expectedMessage, actualMessage);
     }
+
+    @Test
+    void LugarOcupado() {
+        JuegoTresEnRaya juego = new TresEnRaya();
+
+        juego.ponerFicha(0, 0); // Juega X
+
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            juego.ponerFicha(0, 0); // Intentar jugar en la misma posición
+        });
+
+        String expectedMessage = "Posicion ya ocupada";
+        String actualMessage = exception.getMessage();
+
+        assertEquals(expectedMessage, actualMessage);
+    }
 }
