@@ -29,6 +29,17 @@ public class TresEnRayaTest {
         assertEquals("X", juego.obtenerJugadorActual(), "Después de +, debe jugar X");
     }
 
+    @Test
+    void FilaMenorACero() {
+        JuegoTresEnRaya juego = new TresEnRaya();
 
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            juego.ponerFicha(-1, 1);
+        });
 
+        String expectedMessage = "Fila fuera de rango";
+        String actualMessage = exception.getMessage();
+
+        assertEquals(expectedMessage, actualMessage);
+    }
 }
