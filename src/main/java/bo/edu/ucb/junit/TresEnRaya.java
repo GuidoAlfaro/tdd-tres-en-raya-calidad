@@ -41,7 +41,7 @@ public class TresEnRaya implements JuegoTresEnRaya {
 
     @Override
     public String obtenerGanador() {
-        // Implementación básica para pasar las pruebas iniciales
+        // Husk: 
         // Verificar filas horizontales
         for (int i = 0; i < 3; i++) {
             if (tablero[i][0] != null && tablero[i][0].equals(tablero[i][1]) && tablero[i][1].equals(tablero[i][2])) {
@@ -56,12 +56,22 @@ public class TresEnRaya implements JuegoTresEnRaya {
             }
         }
     
-        return null;
+        // Verificar diagonal principal (de arriba-izquierda a abajo-derecha)
+        if (tablero[0][0] != null && tablero[0][0].equals(tablero[1][1]) && tablero[1][1].equals(tablero[2][2])) {
+            return tablero[0][0];
+        }
+
+        // Verificar diagonal secundaria (de arriba-derecha a abajo-izquierda)
+        if (tablero[0][2] != null && tablero[0][2].equals(tablero[1][1]) && tablero[1][1].equals(tablero[2][0])) {
+            return tablero[0][2];
+        }
+
+        return null; // No hay ganador
     }
 
     @Override
     public boolean juegoTerminado() {
-        // Implementación básica para pasar las pruebas iniciales
+        // Husk: 
         // Si hay un ganador, el juego ha terminado
         if (obtenerGanador() != null) {
             return true;
