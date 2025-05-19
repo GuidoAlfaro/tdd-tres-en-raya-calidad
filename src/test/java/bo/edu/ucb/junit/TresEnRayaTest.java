@@ -56,4 +56,32 @@ public class TresEnRayaTest {
 
         assertEquals(expectedMessage, actualMessage);
     }
+
+    @Test
+    void ColumnaMenorACero() {
+        JuegoTresEnRaya juego = new TresEnRaya();
+
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            juego.ponerFicha(1, -1);
+        });
+
+        String expectedMessage = "Columna fuera de rango";
+        String actualMessage = exception.getMessage();
+
+        assertEquals(expectedMessage, actualMessage);
+    }
+
+    @Test
+    void ColumnaMayorADos() {
+        JuegoTresEnRaya juego = new TresEnRaya();
+
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            juego.ponerFicha(1, 3);
+        });
+
+        String expectedMessage = "Columna fuera de rango";
+        String actualMessage = exception.getMessage();
+
+        assertEquals(expectedMessage, actualMessage);
+    }
 }
