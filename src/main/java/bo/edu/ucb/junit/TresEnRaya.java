@@ -69,7 +69,17 @@ public class TresEnRaya implements JuegoTresEnRaya {
     @Override
     public boolean juegoTerminado() {
         // Husk: 
-        
+        if (obtenerGanador() != null) {
+            return true;
+        }
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (tablero[i][j] == null) {
+                    return false; 
+                }
+            }
+        }
         return true; 
     }
 
