@@ -100,14 +100,14 @@ public class TresEnRayaTest {
 
         assertEquals(expectedMessage, actualMessage);
     }
-
-    // Nuevas pruebas para obtenerGanador y juegoTerminado
+    
+    // Pruebas para obtenerGanador y juegoTerminado
     @Test
     void noHayGanadorEnTableroVacio() {
         JuegoTresEnRaya juego = new TresEnRaya();
         assertNull(juego.obtenerGanador(), "No debe haber ganador en un tablero vacío");
     }
-
+    
     @Test
     void juegoNoTerminadoSinGanador() {
         JuegoTresEnRaya juego = new TresEnRaya();
@@ -117,5 +117,86 @@ public class TresEnRayaTest {
         juego.ponerFicha(1, 0);
 
         assertFalse(juego.juegoTerminado(), "El juego no debe estar terminado cuando no hay ganador y quedan espacios libres");
+    }
+    
+    // Nuevas pruebas más complejas que fallarán intencionalmente
+    @Test
+    void jugadorXGanaEnLineaHorizontal() {
+        JuegoTresEnRaya juego = new TresEnRaya();
+        // X juega en (0,0)
+        juego.ponerFicha(0, 0);
+        // + juega en (1,0)
+        juego.ponerFicha(1, 0);
+        // X juega en (0,1)
+        juego.ponerFicha(0, 1);
+        // + juega en (1,1)
+        juego.ponerFicha(1, 1);
+        // X juega en (0,2) - completa la línea horizontal
+        juego.ponerFicha(0, 2);
+
+        assertEquals("X", juego.obtenerGanador(), "X debe ganar con una línea horizontal completa");
+    }
+    
+    @Test
+    void jugadorXGanaEnDiagonalPrincipal() {
+        JuegoTresEnRaya juego = new TresEnRaya();
+        // X juega en (0,0)
+        juego.ponerFicha(0, 0);
+        // + juega en (0,1)
+        juego.ponerFicha(0, 1);
+        // X juega en (1,1)
+        juego.ponerFicha(1, 1);
+        // + juega en (0,2)
+        juego.ponerFicha(0, 2);
+        // X juega en (2,2) - completa la diagonal principal
+        juego.ponerFicha(2, 2);
+
+        assertEquals("X", juego.obtenerGanador(), "X debe ganar con una diagonal principal completa");
+    }
+    
+    @Test
+    void jugadorMasGanaEnDiagonalSecundaria() {
+        JuegoTresEnRaya juego = new TresEnRaya();
+        // X juega en (0,0)
+        juego.ponerFicha(0, 0);
+        // + juega en (0,2)
+        juego.ponerFicha(0, 2);
+        // X juega en (1,0)
+        juego.ponerFicha(1, 0);
+        // + juega en (1,1)
+        juego.ponerFicha(1, 1);
+        // X juega en (1,2)
+        juego.ponerFicha(1, 2);
+        // + juega en (2,0) - completa la diagonal secundaria
+        juego.ponerFicha(2, 0);
+
+        assertEquals("+", juego.obtenerGanador(), "+ debe ganar con una diagonal secundaria completa");
+    }
+    
+    @Test
+    void juegoTerminadoEmpateSinGanador() {
+        JuegoTresEnRaya juego = new TresEnRaya();
+        // Configurar un tablero lleno sin ganador
+        // X juega en (0,0)
+        juego.ponerFicha(0, 0);
+        // + juega en (0,1)
+        juego.ponerFicha(0, 1);
+        // X juega en (0,2)
+        juego.ponerFicha(0, 2);
+        // + juega en (1,0)
+        juego.ponerFicha(1, 0);
+        // X juega en (1,1)
+        juego.ponerFicha(1, 1);
+        // + juega en (2,0)
+        juego.ponerFicha(2, 0);
+        // X juega en (1,2)
+        juego.ponerFicha(1, 2);
+        // + juega en (2,2)
+        juego.ponerFicha(2, 2);
+        // X juega en (2,1)
+        juego.ponerFicha(2, 1);
+
+        assertTrue(juego.juegoTerminado(), "El juego debe estar terminado cuando el tablero está lleno");
+        assertNull(juego.obtenerGanador(), "No debe haber ganador en un empate");
     }
 }
