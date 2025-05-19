@@ -11,17 +11,17 @@ public class TresEnRaya implements JuegoTresEnRaya {
         if (fila < 0 || fila > 2) {
         throw new IllegalArgumentException("Fila fuera de rango");
         }
+
         // Validacion de columna
         if (columna < 0 || columna > 2) {
             throw new IllegalArgumentException("Columna fuera de rango");
         }
-
-        /* 
+        
         // Validar si la posicion ya tiene una ficha
         if (tablero[fila][columna] != null) {
             throw new IllegalArgumentException("Posicion ya ocupada");
         }
-        */
+
         // Colocamos la ficha en el tablero
         tablero[fila][columna] = jugadorActual;
 
