@@ -7,13 +7,14 @@ public class TresEnRaya implements JuegoTresEnRaya {
 
     @Override
     public void ponerFicha(int fila, int columna) {
+        // Validacion de fila
         if (fila < 0 || fila > 2) {
         throw new IllegalArgumentException("Fila fuera de rango");
         }
-        /* 
+        // Validacion de columna
         if (columna < 0 || columna > 2) {
             throw new IllegalArgumentException("Columna fuera de rango");
-        }*/
+        }
 
         // Colocamos la ficha en el tablero
         tablero[fila][columna] = jugadorActual;
