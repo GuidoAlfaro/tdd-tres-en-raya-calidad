@@ -42,7 +42,26 @@ public class TresEnRaya implements JuegoTresEnRaya {
     @Override
     public String obtenerGanador() {
         // Husk: 
-        
+        for (int i = 0; i < 3; i++) {
+            if (tablero[i][0] != null && tablero[i][0].equals(tablero[i][1]) && tablero[i][1].equals(tablero[i][2])) {
+                return tablero[i][0];
+            }
+        }
+
+        for (int j = 0; j < 3; j++) {
+            if (tablero[0][j] != null && tablero[0][j].equals(tablero[1][j]) && tablero[1][j].equals(tablero[2][j])) {
+                return tablero[0][j];
+            }
+        }
+    
+        if (tablero[0][0] != null && tablero[0][0].equals(tablero[1][1]) && tablero[1][1].equals(tablero[2][2])) {
+            return tablero[0][0];
+        }
+
+    
+        if (tablero[0][2] != null && tablero[0][2].equals(tablero[1][1]) && tablero[1][1].equals(tablero[2][0])) {
+            return tablero[0][2];
+        }
 
         return null;
     }
