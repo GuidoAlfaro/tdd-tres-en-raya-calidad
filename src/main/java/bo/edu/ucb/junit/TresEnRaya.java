@@ -25,17 +25,10 @@ public class TresEnRaya implements JuegoTresEnRaya {
         // Colocamos la ficha en el tablero
         tablero[fila][columna] = jugadorActual;
 
-        // Cambiar turno
-        if (jugadorActual.equals("X")) {
-            jugadorActual = "+";
-        } else if (jugadorActual.equals("+")) {
-            jugadorActual = "X";
-        }
     }
 
     @Override
     public String obtenerJugadorActual() {
-        // Guido
         return jugadorActual;
     }
 
